@@ -9,14 +9,14 @@
 #define PAGE_SIZE (4*1024)
 #define START_ADDRESS 0x8000000
 #define START_ADDRESS2 0x800000000
-#define N_ITERATIONS 524288
+//#define N_ITERATIONS 524288
 
 // one more iteration and mmap fails
-//#define N_ITERATIONS 524289
+#define N_ITERATIONS 524289
 
 void allocate(void* base_address)
 {
-    int i;
+    long long int i;
     for (i = 0; i < N_ITERATIONS; ++i) {
         void* current_addr = base_address + PAGE_SIZE * i;
         void* ret = mmap((void*)current_addr, PAGE_SIZE, PROT_EXEC|PROT_READ|PROT_WRITE, 
